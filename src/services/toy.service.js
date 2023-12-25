@@ -2,8 +2,7 @@
 
 
 const TOYS_KEY = 'toysDB'
-const labels = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle',
-    'Outdoor', 'Battery Powered']
+
 // const PAGE_SIZE = 8
 _createToys()
 
@@ -21,9 +20,46 @@ export const toyService = {
 }
 
 
-function query() {
-    return asyncService.query(TOYS_KEY).then(toys => { return toys })
+function query(filterSortBy) {
+    const { name, inStock, byLabel, sortBy } = filterSortBy
+
+    return asyncService.query(TOYS_KEY)
+        .then(toys => {
+            if (name) {
+                const regex = new RegExp(name, 'i')
+                toys = toys.filter(toy => regex.test(toy.name))
+            }
+
+            if (inStock === 'inStock') {
+                toys = toys.filter(toy => toy.inStock)
+            }
+
+            if (inStock === 'notInStock') {
+                toys = toys.filter(toy => !toy.inStock)
+            }
+
+            if (byLabel) {
+                byLabel.forEach(label => {
+                    toys.filter(toy => { toy.labels.some(label) })
+                })
+            }
+
+            if (sortBy === 'price') {
+                toys.sort((toyA, toyB) => toyA.price - toyB.price)
+            }
+            if (sortBy === 'createdAt') {
+                toys.sort((toyA, toyB) => toyA.createdAt - toyB.createdAt)
+            }
+
+            if (sortBy === 'name') {
+                toys.sort((toyA, toyB) => toyA.name.localeCompare(toyB.name))
+            }
+
+            return toys
+        })
+
 }
+
 
 function getById(toyId) {
     return asyncService.get(TOYS_KEY, toyId)
@@ -48,7 +84,7 @@ function remove(toyId) {
 
 function getDefaultFilter() {
     return {
-        name: '', sort: 'name',
+        name: '', inStock: 'all', byLabel: [], sortBy: 'name'
     }
 }
 
@@ -60,6 +96,7 @@ function getEmptyToy() {
         inStock: false,
     }
 }
+
 
 
 function _createToys() {

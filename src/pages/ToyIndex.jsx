@@ -1,9 +1,10 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ToyList } from '../cmps/ToyList'
 import { loadToys, removeToy } from "../store/actions/toy.actions"
 import { ToyFilter } from "../cmps/ToyFilter"
 import { Link } from 'react-router-dom'
+import { FILTER } from "../store/redcuers/app.reducer";
 
 
 
@@ -12,13 +13,16 @@ export function ToyIndex() {
 
     const toys = useSelector(storeState => storeState.toyMoudle.toys)
     const filterSortBy = useSelector(storeState => storeState.appMoudle.filterSortBy)
+    const labels = useSelector(storeState => storeState.appMoudle.labels)
+
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        loadToys()
+        loadToys(filterSortBy)
             .catch((err) => {
                 console.log('err:', err)
             })
-    }, [])
+    }, [filterSortBy])
 
     function onRemoveToy(toyId) {
         removeToy(toyId)
@@ -27,28 +31,25 @@ export function ToyIndex() {
     }
 
     function handleChange({ target }) {
-        let value
+        let value = target.value
         let field = target.name
-        let type = target.type
+        console.log("value:", value)
+        console.log("field:", field)
 
-        switch (field) {
-            case 'price':
-                value = +value
-                break;
-            case 'inStock':
-                value = target.checked
-                break
-            // case 'labels':
-            //     value += ','
-            //     value = value.split(',')
+        // switch (field) {
 
-            default:
-                value = target.value
-                break;
-        }
+        //     // case 'byLabel':
+        //     //     console.log("value:", value)
+        //     //     filterSortBy.byLabel.push(value)
+        //     //     value = filterSortBy.byLabel.map(label => label)
+        //     //     console.log("value:", value)
 
+        //     default:
+        //         break;
+        // }
+        const filterSort = { ...filterSortBy, [field]: value }
 
-        setToyToEdit((prevToy) => ({ ...prevToy, [field]: value }))
+        dispatch({ type: FILTER, filterSort })
     }
 
     if (!toys) return <div>Loading...</div>
@@ -57,7 +58,7 @@ export function ToyIndex() {
     return (
         <section className="toys-index">
             <section className="toys-index-header">
-                <ToyFilter handleChange={handleChange} name={filterSortBy.name} ></ToyFilter>
+                <ToyFilter handleChange={handleChange} filterSortBy={filterSortBy} labels={labels}></ToyFilter>
                 <Link to={'/toy/edit'}>Add</Link>
 
             </section>

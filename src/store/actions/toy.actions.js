@@ -3,9 +3,9 @@ import { ADD_TOY, EDIT_TOY, REMOVE_TOY, SET_TOYS } from "../redcuers/toy.reducer
 import { store } from "../store"
 
 
-export function loadToys() {
+export function loadToys(filterSortBy) {
 
-    return toyService.query()
+    return toyService.query(filterSortBy)
         .then(toys => {
             store.dispatch({ type: SET_TOYS, toys })
         })
