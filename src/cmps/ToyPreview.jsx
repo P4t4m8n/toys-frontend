@@ -8,7 +8,7 @@ export function ToyPreview({ toy }) {
             <header>Name: {toy.name}</header>
             <p>Price: {toy.price}</p>
             <p>Labels: {toy.labels.toString()}</p>
-            <p>InStock: {toy.inStock}</p>
+            {toy.inStock && <p>InStock!</p>}
         </Fragment>
     )
 }

@@ -1,0 +1,30 @@
+.header-container {
+    display: flex;
+    background-color: aqua;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1em;
+
+}
+
+.logo {
+    font-family: 'Pacifico', cursive;
+    /* A cool font */
+    font-size: 1em;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    color: #003a70;
+    /* Toys "R" Us blue color */
+    text-shadow: 2px 2px 2px #999;
+}
+
+.flipped-f {
+    transform: scaleX(-1);
+    display: inline-block;
+}
+
+.app-nav {
+    display: flex;
+    gap: 1em;
+}

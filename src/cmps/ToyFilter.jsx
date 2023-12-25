@@ -7,20 +7,23 @@ export function ToyFilter({ handleChange, name }) {
             <form >
                 <label htmlFor="name">name </label>
                 <input value={name} onChange={handleChange} type="text" id="name" name="name" />
+                
+               
               
             </form>
-            <label htmlFor="list">By:</label>
-            {/* <select name="list" id="list" onChange={handleChange} defaultValue={'all'}>
+            <label htmlFor="inStock">By:</label>
+            <select name="inStock" id="inStock" onChange={handleChange} defaultValue={'all'}>
                 <option value={'all'}>All</option>
-                <option value={'price'}>Price</option>
-                <option value={'inStock'}>Done</option>
+                <option value={'notInStock'}>Not In Stock</option>
+                <option value={'inStock'}>In Stock</option>
 
-            </select> */}
+            </select>
 
             <label htmlFor="sort">Sort By:</label>
             <select name="sort" id="sort" onChange={handleChange} defaultValue={'name'}>
                 <option value={'name'}>Name</option>
                 <option value={'price'}>Price</option>
+                <option value={'created'}>Created</option>
             </select>
         </section>
     )

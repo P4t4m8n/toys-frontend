@@ -1,0 +1,15 @@
+
+
+.home-container {
+    width: 100%;
+    height: 100vh;
+    background-color: bisque;
+}
+
+.home-container h1{
+    position: relative;
+    text-align:center;
+    top:18%;
+    font-size: 5rem;
+
+}

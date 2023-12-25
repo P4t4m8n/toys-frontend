@@ -40,12 +40,12 @@ export function removeToy(toyId) {
 }
 
 export function saveToy(toy) {
-
+    
     const type = (toy._id) ? EDIT_TOY : ADD_TOY
-
+    
     return toyService.save(toy)
-        .then((savedtoy) => {
-            dispatch({ type: type, toy: savedtoy })
+    .then((savedtoy) => {
+            store.dispatch({ type: type, toy: savedtoy })
             console.log('Saved')
         })
         .catch((err) => {

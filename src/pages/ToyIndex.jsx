@@ -18,7 +18,7 @@ export function ToyIndex() {
             .catch((err) => {
                 console.log('err:', err)
             })
-    },[])
+    }, [])
 
     function onRemoveToy(toyId) {
         removeToy(toyId)
@@ -27,10 +27,28 @@ export function ToyIndex() {
     }
 
     function handleChange({ target }) {
-        const value = target.value
-        const objName = target.name
+        let value
+        let field = target.name
+        let type = target.type
 
-        dispatch({ type: FILTER, filterSortBy: { [objName]: value } })
+        switch (field) {
+            case 'price':
+                value = +value
+                break;
+            case 'inStock':
+                value = target.checked
+                break
+            // case 'labels':
+            //     value += ','
+            //     value = value.split(',')
+
+            default:
+                value = target.value
+                break;
+        }
+
+
+        setToyToEdit((prevToy) => ({ ...prevToy, [field]: value }))
     }
 
     if (!toys) return <div>Loading...</div>
@@ -38,7 +56,7 @@ export function ToyIndex() {
 
     return (
         <section className="toys-index">
-            <section className="tyos-index-header">
+            <section className="toys-index-header">
                 <ToyFilter handleChange={handleChange} name={filterSortBy.name} ></ToyFilter>
                 <Link to={'/toy/edit'}>Add</Link>
 

@@ -1,5 +1,5 @@
 import { toyService } from "../services/toy.service"
-import { useState,useEffect } from "react"
+import { useState, useEffect } from "react"
 import { useParams, useNavigate } from "react-router"
 import { loadToy, saveToy } from "../store/actions/toy.actions"
 
@@ -22,8 +22,28 @@ export function ToyEdit() {
     }, [])
 
     function handleChange({ target }) {
-        let value = target.value
-        setToyToEdit((prevToy) => ({ ...prevToy, name: value }))
+        let value
+        let field = target.name
+        let type = target.type
+
+        switch (field) {
+            case 'price':
+                value = +value
+                break;
+            case 'inStock':
+                value = target.checked
+                break
+            // case 'labels':
+            //     value += ','
+            //     value = value.split(',')
+
+            default:
+                value = target.value
+                break;
+        }
+       
+
+        setToyToEdit((prevToy) => ({ ...prevToy, [field]: value }))
     }
 
 
@@ -41,16 +61,32 @@ export function ToyEdit() {
     }
 
     function onBack() {
-        navigate('/toy' )
+        navigate('/toy')
     }
 
+    console.log("toyToEdit.inStock:", toyToEdit.inStock)
 
     return (
         <section className="edit-toy">
 
             <form >
                 <label htmlFor="name">Name: </label>
-                <input value={toyToEdit.name} onChange={handleChange} id="name" type="text" name="name"></input>
+                <input value={toyToEdit.name} onChange={handleChange}
+                    id="name" type="text" name="name"></input>
+
+                <label htmlFor="price">Price: </label>
+                <input value={toyToEdit.price} onChange={handleChange}
+                    id="price" type="number" name="price"></input>
+
+                <label htmlFor="inStock">Instock: </label>
+                <input checked={toyToEdit.inStock} onChange={handleChange}
+                    id="inStock" type="checkbox" name="inStock"></input>
+
+                <label htmlFor="labels">Labels: </label>
+                <input value={toyToEdit.labels} onChange={handleChange}
+                    id="labels" type="text" name="labels"></input>
+
+
             </form>
             <div className="edit-toy-btns">
                 <button onClick={onSaveToy}>Save</button>

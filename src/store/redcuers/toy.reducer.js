@@ -18,15 +18,15 @@ export function toyRedcuer(state = initialState, action = {}) {
             return { ...state, toys: action.toys }
 
         case ADD_TOY:
-            toys = [...state.toys, action.todo]
+            toys = [...state.toys, action.toy]
             return { ...state, toys }
 
         case REMOVE_TOY:
-            toys = state.toys.filter(todo => todo._id !== action.todoId)
+            toys = state.toys.filter(toy => toy._id !== action.toyId)
             return { ...state, toys }
 
         case EDIT_TOY:
-            toys = state.toys.map(todo => todo._id === action.todo._id ? action.todo : todo)
+            toys = state.toys.map(toy => toy._id === action.toy._id ? action.toy : toy)
             return { ...state, toys }
 
         default:

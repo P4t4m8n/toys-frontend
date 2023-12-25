@@ -1,0 +1,17 @@
+.toy-list {
+    box-sizing: border-box;
+    columns: 12rem auto;
+    height: fit-content;
+    padding: 2rem;
+}
+
+.toy{
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    break-inside: avoid;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border: 0.2rem solid;
+    border-radius: 2rem;
+    margin-bottom: 1rem;
+}
