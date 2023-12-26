@@ -33,8 +33,8 @@ export function ToyIndex() {
     function handleChange({ target }) {
         let value = target.value
         let field = target.name
-        console.log("value:", value)
-        console.log("field:", field)
+        // console.log("value:", value)
+        // console.log("field:", field)
 
         switch (field) {
             case 'dir':
