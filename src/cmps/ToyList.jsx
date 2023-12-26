@@ -1,6 +1,6 @@
+
 import { ToyPreview } from "./ToyPreview"
 import { Link } from "react-router-dom"
-
 
 export function ToyList({ toys, onRemoveToy }) {
 
@@ -14,7 +14,8 @@ export function ToyList({ toys, onRemoveToy }) {
                         <button><Link to={`/toy/${toy._id}`}>Details</Link></button>
                         <button><Link to={`/toy/edit/${toy._id}`}>Edit</Link></button>
                     </section>
-                </li>)}
+                </li>
+                )}
         </ul>
     )
 }

@@ -36,17 +36,14 @@ export function ToyIndex() {
         console.log("value:", value)
         console.log("field:", field)
 
-        // switch (field) {
-
-        //     // case 'byLabel':
-        //     //     console.log("value:", value)
-        //     //     filterSortBy.byLabel.push(value)
-        //     //     value = filterSortBy.byLabel.map(label => label)
-        //     //     console.log("value:", value)
-
-        //     default:
-        //         break;
-        // }
+        switch (field) {
+            case 'dir':
+                value = target.checked
+            case 'byLabel':
+                value = Array.from(target.selelctOptions, (option) => option.value)
+            default:
+                break;
+        }
         const filterSort = { ...filterSortBy, [field]: value }
 
         dispatch({ type: FILTER, filterSort })

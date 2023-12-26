@@ -15,7 +15,7 @@ import { store } from './store/store.js'
 export function App() {
 
   return (
-    <>
+    
       <Provider store={store}>
         <Router>
           <section className="main-layout">
@@ -31,7 +31,7 @@ export function App() {
           </section>
         </Router>
       </Provider>
-    </>
+    
   )
 
 }

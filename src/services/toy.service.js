@@ -1,7 +1,5 @@
 
-
 import Axios from 'axios'
-
 
 const axios = Axios.create({
     withCredentials: true
@@ -9,8 +7,6 @@ const axios = Axios.create({
 
 const BASE_URL = 'toy/'
 
-
-import { asyncService } from './async-storage.service.js'
 import { httpService } from './http.service.js'
 export const toyService = {
     query,
