@@ -33,9 +33,9 @@ export function ToyEdit() {
             case 'inStock':
                 value = target.checked
                 break
-            // case 'labels':
-            //     value += ','
-            //     value = value.split(',')
+            case 'labels':
+                value += ','
+                value = value.split(',')
 
             default:
                 value = target.value
@@ -64,7 +64,6 @@ export function ToyEdit() {
         navigate('/toy')
     }
 
-    console.log("toyToEdit.inStock:", toyToEdit.inStock)
 
     return (
         <section className="edit-toy">

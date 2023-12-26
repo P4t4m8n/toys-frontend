@@ -10,6 +10,7 @@
 @import 'cmps/AppHeader.css';
 @import 'cmps/AppFooter.css';
 @import 'cmps/UserMsg.css';
+@import '../style/cmps/About.css';
 
 @import 'cmps/ToyIndex.css';
 @import 'cmps/Home.css';

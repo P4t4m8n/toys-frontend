@@ -21,11 +21,7 @@ export function appReducer(state = initialState, action = {}) {
     switch (action.type) {
 
         case FILTER:
-
-            console.log("action.filterSort:", action.filterSort)
             let filterSortBy = { ...state.filterSortBy, ...action.filterSort }
-            console.log("filterSortBy:", filterSortBy)
-
             return { ...state, filterSortBy }
 
         //LABELS
