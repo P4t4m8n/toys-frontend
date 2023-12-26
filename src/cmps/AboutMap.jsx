@@ -9,11 +9,9 @@ const AnyReactComponent = ({ text }) => <div>{text}</div>;
 export function AboutMap() {
 
     const [center, setCenter] = useState({
-        lat: 10.99835602,
-        lng: 77.01502627
-
+        lat: 34.99835602,
+        lng: 34.01502627
     })
-    console.log("center:", center)
     const zoom = 11
 
     useEffect(() => {
@@ -21,18 +19,8 @@ export function AboutMap() {
     }, [])
 
     function getUserLoc() {
-        navigator.geolocation.getCurrentPosition(givePosition)
+      navigator.geolocation.getCurrentPosition((pos) => setCenter({ lat: pos.coords.latitude, lng: pos.coords.longitude }))
     }
-
-    function givePosition(position) {
-        setCenter({
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-        })
-    }
-
-
-
 
     const shops = [
         { "location": "Western Wall (Waibuttonng Wall), Jerusalem", lat: 31.7767, lng: 35.2345 },
@@ -43,14 +31,13 @@ export function AboutMap() {
     ]
 
     return (
-        // Important! Always set the container height expbuttoncitly
         <section className="map-contianer">
 
             <div style={{ height: '40vh', width: '60%' }} >
                 <GoogleMap
                     bootstrapURLKeys={{ key: "AIzaSyD3ttgm9AgTaAeM3V8JwTJB9L_Wtfn_h_0", region: 'IL' }}
                     center={center}
-                    defaultZoom={zoom}
+                    zoom={zoom}
 
                 >
                     {

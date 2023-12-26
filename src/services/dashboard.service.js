@@ -1,6 +1,7 @@
 
 export const dashboardService = {
     getInvByLabel,
+    getPricePerLabel,
 }
 
 function getInvByLabel(labels, toys) {
@@ -24,6 +25,18 @@ function getInvByLabel(labels, toys) {
     return invByLabel
 }
 
-function getPricePerLabel(){
-    return 
+function getPricePerLabel(labels, toys) {
+    return labels.map(label => {
+        var sumPrice = 0
+        var amount = 0
+        toys.forEach(toy => {
+            var isLabel = toy.labels.some(toyLabel => toyLabel === label)
+            if (isLabel) {
+                sumPrice += +toy.price
+                amount++
+            }
+        })
+        return sumPrice / amount || 0
+
+    })
 }

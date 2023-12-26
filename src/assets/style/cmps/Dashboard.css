@@ -1,0 +1,15 @@
+.dashboard {
+    padding: 3rem;
+    display: flex;
+    max-width:50vw;
+    box-sizing: border-box;
+    max-height: 70vh;
+    gap: 2rem;
+   
+}
+
+.dashboard>* {
+    /* width: 400px !important;
+    height: 400px !important; */
+    box-sizing: border-box;
+}

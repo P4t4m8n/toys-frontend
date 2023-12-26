@@ -18,6 +18,17 @@ export const toyService = {
 
 }
 
+export const i18Service = {
+    getLanguages,
+}
+
+function getLanguages() {
+    return {
+        en: { nativeName: 'English' },
+        he: { nativeName: 'עברית' }
+    }
+}
+
 function query(filterSortBy) {
     return httpService.get(BASE_URL, filterSortBy)
 

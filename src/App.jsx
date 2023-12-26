@@ -1,6 +1,7 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom"
 import { Provider } from 'react-redux'
 import './assets/style/main.css'
+import './services/i18n.service';
 
 
 import { AppHeader } from "./cmps/AppHeader"

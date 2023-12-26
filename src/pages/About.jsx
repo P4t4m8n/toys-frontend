@@ -18,7 +18,7 @@ export function About() {
                 <p>We've scoured the globe for the quirkiest, most whimsical toys that will make you question your adulthood choices. Our team of toy experts (who may or may not be actual elves) has handpicked a selection that will transport you to a land where responsibilities are just a distant rumor.</p>
 
                 <p>Explore our magical inventory and rediscover the joy of play. But before you dive in, here are some of our imaginary competitors who just can't match up to the awesomeness of Toys Not For Us:</p>
-                {/* <AboutMap></AboutMap> */}
+             
                 <AboutMap></AboutMap>
 
              

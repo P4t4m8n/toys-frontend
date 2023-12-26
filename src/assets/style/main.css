@@ -16,9 +16,12 @@
 @import 'cmps/Home.css';
 @import 'cmps/ToyEdit.css';
 @import 'cmps/ToyDetails.css';
+@import './cmps/Dashboard.css';
 
 @import 'cmps/ToyFilter.css';
 @import 'cmps/ToyList.css';
 @import 'cmps/ToyPreview.css';
 
+
+/* @import './test.css' */
 
