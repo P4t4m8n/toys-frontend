@@ -35,7 +35,7 @@ export function AboutMap() {
 
             <div style={{ height: '40vh', width: '60%' }} >
                 <GoogleMap
-                    bootstrapURLKeys={{ key: "AIzaSyD3ttgm9AgTaAeM3V8JwTJB9L_Wtfn_h_0", region: 'IL' }}
+                    bootstrapURLKeys={{ key: "", region: 'IL' }}
                     center={center}
                     zoom={zoom}
 
