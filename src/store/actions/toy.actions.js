@@ -17,7 +17,8 @@ export function loadToys(filterSortBy) {
 
 export function loadToy(toyId) {
     return toyService.getById(toyId)
-        .then(toy => {
+    .then(toy => {
+            // console.log("toy:", toy)
             return toy
         })
         .catch(err => {

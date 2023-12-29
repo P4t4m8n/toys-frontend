@@ -1,14 +1,30 @@
 .toys-index {
     display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    /* gap: 1rem; */
+    width: 100vw;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 1em;
+
+
+
 }
 
-.toys-index-header {
+.toys-index-sidebar {
+    display: grid;
+    grid-template-columns: minmax(auto,15vw);
+    /* gap: 1.5rem;
+    width: 15vw */
+}
+
+.toys-index-sidebar>* {}
+
+.toy-filter {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.5rem;
+    flex-direction: column;
 }
 
-
+.toy-filter form input {
+    /* width: fit-content; */
+    /* background-color: red; */
+}

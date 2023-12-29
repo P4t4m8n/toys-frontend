@@ -1,10 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ToyList } from '../cmps/ToyList'
 import { loadToys, removeToy } from "../store/actions/toy.actions"
 import { ToyFilter } from "../cmps/ToyFilter"
-import { Link } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 import { FILTER } from "../store/redcuers/app.reducer";
+
+
 
 
 
@@ -14,6 +16,11 @@ export function ToyIndex() {
     const toys = useSelector(storeState => storeState.toyMoudle.toys)
     const filterSortBy = useSelector(storeState => storeState.appMoudle.filterSortBy)
     const labels = useSelector(storeState => storeState.appMoudle.labels)
+    const user = useSelector(storeState => storeState.userMoudle.userObj)
+    const [isOpen, setIsopen] = useState(false)
+
+
+
 
     const dispatch = useDispatch()
 
@@ -22,7 +29,7 @@ export function ToyIndex() {
             .catch((err) => {
                 console.log('err:', err)
             })
-    }, [filterSortBy])
+    }, [filterSortBy,user])
 
     function onRemoveToy(toyId) {
         removeToy(toyId)
@@ -33,17 +40,7 @@ export function ToyIndex() {
     function handleChange({ target }) {
         let value = target.value
         let field = target.name
-        // console.log("value:", value)
-        // console.log("field:", field)
 
-        switch (field) {
-            case 'dir':
-                value = target.checked
-            case 'byLabel':
-                value = Array.from(target.selelctOptions, (option) => option.value)
-            default:
-                break;
-        }
         const filterSort = { ...filterSortBy, [field]: value }
 
         dispatch({ type: FILTER, filterSort })
@@ -51,18 +48,23 @@ export function ToyIndex() {
 
     if (!toys) return <div>Loading...</div>
 
+    const openClass = isOpen ? 'open' : ''
+    const { isAdmin } = user || false
 
     return (
         <section className="toys-index">
-            <section className="toys-index-header">
-                <ToyFilter handleChange={handleChange} filterSortBy={filterSortBy} labels={labels}></ToyFilter>
+            <section className="toys-index-sidebar">
                 <Link to={'/toy/edit'}>Add</Link>
-
+                <button onClick={() => setIsopen(!isOpen)}
+                >{(isOpen) ? 'X' : 'Open'}</button>
+                <div className={"filter-panal " + openClass}>
+                    <ToyFilter handleChange={handleChange} filterSortBy={filterSortBy} labels={labels}></ToyFilter>
+                </div>
             </section>
             <main className="toys">
-                <ToyList toys={toys} onRemoveToy={onRemoveToy} />
-
+                <ToyList toys={toys} onRemoveToy={onRemoveToy} isAdmin={isAdmin} />
             </main>
+            <Outlet />
         </section>
     )
 }

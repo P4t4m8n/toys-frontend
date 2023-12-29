@@ -5,6 +5,8 @@ const axios = Axios.create({
     withCredentials: true
 })
 
+
+
 const BASE_URL = 'toy/'
 
 import { httpService } from './http.service.js'
@@ -15,6 +17,8 @@ export const toyService = {
     getById,
     getDefaultFilter,
     getEmptyToy,
+    addMsg,
+    removeMsg,
 
 }
 
@@ -40,14 +44,14 @@ function getById(toyId) {
 
 function save(toy) {
     if (toy._id) {
-        return httpService.put(BASE_URL, toy)
+        return httpService.put(BASE_URL + 'edit/' + toy._id, toy)
     } else {
-        return httpService.post(BASE_URL, toy)
+        return httpService.post(BASE_URL + 'edit', toy)
     }
 }
 
 function remove(toyId) {
-    return httpService.remove(BASE_URL, toyId)
+    return httpService.delete(BASE_URL + toyId)
 }
 
 function getDefaultFilter() {
@@ -62,7 +66,22 @@ function getEmptyToy() {
         price: 0,
         labels: [],
         inStock: false,
+        msgs: [],
     }
+}
+
+function addMsg(toyId, msg) {
+
+
+    if (msg.id) {
+        return httpService.put(BASE_URL + toyId + '/msg/' + msg.id, msg)
+    } else {
+        return httpService.post(BASE_URL + toyId + '/msg', msg)
+    }
+}
+
+function removeMsg(toyId, msgId) {
+    return httpService.delete(BASE_URL + toyId + '/' + msgId)
 }
 
 
