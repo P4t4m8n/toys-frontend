@@ -13,7 +13,7 @@ const initialState = {
     isLoading: false,
     filterSortBy: toyService.getDefaultFilter(),
     labels: ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle',
-        'Outdoor', 'Battery Powered']
+        'Outdoor', 'Battery Powered','Test']
 }
 export function appReducer(state = initialState, action = {}) {
 

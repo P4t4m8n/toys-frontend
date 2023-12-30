@@ -28,8 +28,8 @@ export const i18Service = {
 
 function getLanguages() {
     return {
-        en: { nativeName: 'English' },
-        he: { nativeName: 'עברית' }
+        en: { nativeName: 'us' },
+        he: { nativeName: 'il' }
     }
 }
 

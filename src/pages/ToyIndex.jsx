@@ -17,7 +17,6 @@ export function ToyIndex() {
     const filterSortBy = useSelector(storeState => storeState.appMoudle.filterSortBy)
     const labels = useSelector(storeState => storeState.appMoudle.labels)
     const user = useSelector(storeState => storeState.userMoudle.userObj)
-    const [isOpen, setIsopen] = useState(false)
 
 
 
@@ -29,7 +28,7 @@ export function ToyIndex() {
             .catch((err) => {
                 console.log('err:', err)
             })
-    }, [filterSortBy,user])
+    }, [filterSortBy, user])
 
     function onRemoveToy(toyId) {
         removeToy(toyId)
@@ -38,8 +37,16 @@ export function ToyIndex() {
     }
 
     function handleChange({ target }) {
+        console.log("target:", target)
         let value = target.value
+        console.log("value:", value)
         let field = target.name
+        console.log("field:", field)
+
+        // const {
+        //             target: { value },
+        //         } = event
+        //         setSelectedOptions(typeof value === 'string' ? value.split(',') : value)
 
         const filterSort = { ...filterSortBy, [field]: value }
 
@@ -48,18 +55,15 @@ export function ToyIndex() {
 
     if (!toys) return <div>Loading...</div>
 
-    const openClass = isOpen ? 'open' : ''
     const { isAdmin } = user || false
 
     return (
         <section className="toys-index">
-            <section className="toys-index-sidebar">
-                <Link to={'/toy/edit'}>Add</Link>
-                <button onClick={() => setIsopen(!isOpen)}
-                >{(isOpen) ? 'X' : 'Open'}</button>
-                <div className={"filter-panal " + openClass}>
-                    <ToyFilter handleChange={handleChange} filterSortBy={filterSortBy} labels={labels}></ToyFilter>
-                </div>
+            <section className="toys-index-header">
+                {user && user.isAdmin &&
+                    <Link to={'/toy/edit'}>Add</Link>
+                }
+                <ToyFilter handleChange={handleChange} filterSortBy={filterSortBy} labels={labels}></ToyFilter>
             </section>
             <main className="toys">
                 <ToyList toys={toys} onRemoveToy={onRemoveToy} isAdmin={isAdmin} />

@@ -1,52 +1,48 @@
-
-import React, { Fragment } from 'react'
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import { Fragment } from 'react'
+import { useTheme } from '@mui/material/styles';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import Chip from '@mui/material/Chip';
+import { MultiSelect } from './ToyFilters/MultiSelect';
+import { SelectFilter } from './ToyFilters/SelectFilter';
+import { TextfiledFilter } from './ToyFilters/TextFiledFilter';
 
 
 
 export function ToyFilter({ handleChange, filterSortBy, labels }) {
-    const ITEM_HEIGHT = 48
-    const ITEM_PADDING_TOP = 8
-    const MenuProps = {
-        PaperProps: {
-            style: {
-                maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-                width: 250,
-            },
-        },
-    }
+
+    const inStocksValues = { label: 'inStock', values: [{ val: 'all', name: 'All' }, { val: 'notInStock', name: 'Not in Stock' }, { val: 'inStock', name: 'In Stock' }] }
+    const sortByValues = { label: 'sortBy', values: [{ val: 'name', name: 'Name' }, { val: 'price', name: 'Price' }, { val: 'createAt', name: 'Add to Store' }] }
 
 
     return (
-        // <section className="toy-filter">
         <Fragment>
-            <h2>toy filter</h2>
+            {/* <Box
+                component="form"
+                sx={{
+                    '& .MuiTextField-root': { m: 1, width: '25ch' },
+                }}
+                noValidate
+                autoComplete="off"
+            >
 
-            <form >
-                <label htmlFor="name">name </label>
-                <input value={filterSortBy.name} onChange={handleChange} type="text" id="name" name="name" />
-            </form>
+                <TextField value={filterSortBy.name} onChange={handleChange} type="text" id="name" name="name" placeholder='Search by name' />
+            </Box> */}
 
-            <label htmlFor="inStock">By:</label>
-            <select name="inStock" id="inStock" onChange={handleChange} defaultValue={filterSortBy.inStock}>
-                <option value={'all'}>All</option>
-                <option value={'notInStock'}>Not In Stock</option>
-                <option value={'inStock'}>In Stock</option>
-            </select>
+            <TextfiledFilter name={filterSortBy.name} handleChange={handleChange}></TextfiledFilter>
 
-            <label htmlFor="byLabel">By:</label>
-            <select name="byLabel" id="byLabel" onChange={handleChange} defaultValue={filterSortBy.byLabel} multiple>
-                {labels.map((label, idx) =>
-                    <option key={idx} value={label}>{label}</option>
-                )}
-            </select>
+            <SelectFilter data={inStocksValues} handleChange={handleChange} currData={filterSortBy.inStock}></SelectFilter>
+            <SelectFilter data={sortByValues} handleChange={handleChange} currData={filterSortBy.sortBy}></SelectFilter>
 
-            <label htmlFor="sortBy">Sort By:</label>
-            <select name="sortBy" id="sortBy" onChange={handleChange} defaultValue={filterSortBy.sortBy}>
-                <option value={'name'}>Name</option>
-                <option value={'price'}>Price</option>
-                <option value={'createdAt'}>Created</option>
-            </select>
-        </Fragment>
-        
+            <MultiSelect ></MultiSelect>
+
+        </Fragment >
+
     )
 }
+

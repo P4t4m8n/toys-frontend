@@ -35,6 +35,7 @@ export function login(credentials) {
 }
 
 export function signup(credentials) {
+    console.log("credentials:", credentials)
     return userService.signup(credentials)
         .then(user => {
             // console.log("user:", user)

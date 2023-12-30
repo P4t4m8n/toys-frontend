@@ -1,21 +1,2 @@
-.toy-filter {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
 
 
-.filter-panal {
-
-
-    transition: all 3s;
-    width: 0 !important;
-}
-
-
-/* .closed {} */
-
-.open {
-    width: 200px;
-
-}
