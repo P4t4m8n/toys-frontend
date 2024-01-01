@@ -65,32 +65,3 @@ export function MultiSelect() {
 
 
 
-// <FormControl sx={{ m: 1, width: 300 }}>
-// <InputLabel id="demo-multiple-chip-label">By Label</InputLabel>
-// <Select
-//     labelId="demo-multiple-chip-label"
-//     id="demo-multiple-chip"
-//     multiple
-//     value={filterSortBy.byLabel}
-//     onChange={handleChange}
-//     input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
-//     renderValue={(selected) => (
-//         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-//             {selected.map((value) => (
-//                 <Chip key={value} label={value} />
-//             ))}
-//         </Box>
-//     )}
-//     MenuProps={MenuProps}
-// >
-//     {labels.map((label) => (
-//         <MenuItem
-//             key={label}
-//             value={label}
-//         // style={getStyles(label, personName, theme)}
-//         >
-//             {label}
-//         </MenuItem>
-//     ))}
-// </Select>
-// </FormControl>

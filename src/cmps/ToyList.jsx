@@ -10,7 +10,7 @@ export function ToyList({ toys, onRemoveToy, isAdmin }) {
                 <li className="toy" key={toy._id}>
                     <ToyPreview toy={toy}></ToyPreview>
                     <section className="toy-list-btns">
-                        <button><Link to={`/toy/${toy._id}`} >Details</Link></button>
+                        <button ><Link to={`/toy/${toy._id}`} >Details</Link></button>
                         {isAdmin &&
                             <div className="admin-btns">
                                 <button onClick={() => onRemoveToy(toy._id)}>X</button>

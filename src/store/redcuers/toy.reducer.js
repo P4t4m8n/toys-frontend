@@ -3,6 +3,7 @@ export const SET_TOYS = 'SET_TOYS'
 export const ADD_TOY = 'ADD_TOY'
 export const REMOVE_TOY = 'REMOVE_TOY'
 export const EDIT_TOY = 'EDIT_TOY'
+export const SET_CURR_TOY = 'SET_CURR_TOY'
 
 const initialState = {
     toys: [],
@@ -28,6 +29,7 @@ export function toyRedcuer(state = initialState, action = {}) {
         case EDIT_TOY:
             toys = state.toys.map(toy => toy._id === action.toy._id ? action.toy : toy)
             return { ...state, toys }
+
 
         default:
             return state

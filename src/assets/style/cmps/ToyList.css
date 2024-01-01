@@ -2,7 +2,7 @@
     box-sizing: border-box;
     columns: 12rem auto;
     height: fit-content;
-    padding: 2rem;
+    /* padding: 2rem; */
 }
 
 .toy{

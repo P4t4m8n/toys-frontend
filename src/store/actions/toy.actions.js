@@ -17,8 +17,7 @@ export function loadToys(filterSortBy) {
 
 export function loadToy(toyId) {
     return toyService.getById(toyId)
-    .then(toy => {
-            // console.log("toy:", toy)
+        .then(toy => {
             return toy
         })
         .catch(err => {
@@ -29,7 +28,9 @@ export function loadToy(toyId) {
 }
 
 export function removeToy(toyId) {
+
     store.dispatch({ type: REMOVE_TOY, toyId })
+
     return toyService.remove(toyId)
         .then(() => console.log('Removed!'))
         .catch((err) => {
@@ -41,11 +42,11 @@ export function removeToy(toyId) {
 }
 
 export function saveToy(toy) {
-    
+
     const type = (toy._id) ? EDIT_TOY : ADD_TOY
-    
+
     return toyService.save(toy)
-    .then((savedtoy) => {
+        .then((savedtoy) => {
             store.dispatch({ type: type, toy: savedtoy })
             console.log('Saved')
         })
@@ -54,3 +55,4 @@ export function saveToy(toy) {
         })
 
 }
+

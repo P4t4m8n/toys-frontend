@@ -1,7 +1,7 @@
 import { Route, BrowserRouter as Router, Routes, useLocation } from "react-router-dom"
 import { Provider } from 'react-redux'
 import './assets/style/main.css'
-import './services/i18n.service';
+import './services/i18n.service'
 
 
 import { AppHeader } from "./cmps/AppHeader"
@@ -14,6 +14,7 @@ import { store } from './store/store.js'
 import { Dashboard } from "./pages/Dashboard.jsx"
 import { About } from "./pages/About.jsx"
 import { UserProfile } from "./pages/UserProfile.jsx";
+import { ReviewExplore } from "./cmps/ReviewExplore.jsx";
 
 export function App() {
 
@@ -35,6 +36,7 @@ export function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/about" element={<About />} />
             <Route path="/user/:userId" element={<UserProfile />} />
+            <Route path="/review" element={<ReviewExplore />} />
           </Routes>
 
           {/* <AppFooter /> */}

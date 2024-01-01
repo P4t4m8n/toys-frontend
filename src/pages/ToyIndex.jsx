@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ToyList } from '../cmps/ToyList'
 import { loadToys, removeToy } from "../store/actions/toy.actions"
@@ -6,20 +6,12 @@ import { ToyFilter } from "../cmps/ToyFilter"
 import { Link, Outlet } from 'react-router-dom'
 import { FILTER } from "../store/redcuers/app.reducer";
 
-
-
-
-
-
 export function ToyIndex() {
 
     const toys = useSelector(storeState => storeState.toyMoudle.toys)
     const filterSortBy = useSelector(storeState => storeState.appMoudle.filterSortBy)
     const labels = useSelector(storeState => storeState.appMoudle.labels)
     const user = useSelector(storeState => storeState.userMoudle.userObj)
-
-
-
 
     const dispatch = useDispatch()
 
@@ -36,17 +28,10 @@ export function ToyIndex() {
             .catch((err) => console.log('err:', err))
     }
 
+   
     function handleChange({ target }) {
-        console.log("target:", target)
         let value = target.value
-        console.log("value:", value)
         let field = target.name
-        console.log("field:", field)
-
-        // const {
-        //             target: { value },
-        //         } = event
-        //         setSelectedOptions(typeof value === 'string' ? value.split(',') : value)
 
         const filterSort = { ...filterSortBy, [field]: value }
 
@@ -60,13 +45,14 @@ export function ToyIndex() {
     return (
         <section className="toys-index">
             <section className="toys-index-header">
+                <Link to={'/review'}>All reviews</Link>
                 {user && user.isAdmin &&
                     <Link to={'/toy/edit'}>Add</Link>
                 }
                 <ToyFilter handleChange={handleChange} filterSortBy={filterSortBy} labels={labels}></ToyFilter>
             </section>
             <main className="toys">
-                <ToyList toys={toys} onRemoveToy={onRemoveToy} isAdmin={isAdmin} />
+                <ToyList  toys={toys} onRemoveToy={onRemoveToy} isAdmin={isAdmin} />
             </main>
             <Outlet />
         </section>

@@ -6,6 +6,7 @@ import { store } from "../store"
 export function logout() {
 
     const user = null
+
     return userService.logout()
         .then(() => {
             store.dispatch({ type: SET_USER, user })
@@ -15,9 +16,7 @@ export function logout() {
             console.log('user action -> Cannot logout', err)
             throw err
         })
-        .finally(() => {
-            // store.dispatch({ type: SET_IS_LOADING, isLoading: false })
-        })
+       
 
 }
 
@@ -29,26 +28,20 @@ export function login(credentials) {
             console.log('user action -> Cannot login', err)
             throw err
         })
-        .finally(() => {
-            // store.dispatch({ type: SET_IS_LOADING, isLoading: false })
-        })
+       
 }
 
 export function signup(credentials) {
-    console.log("credentials:", credentials)
+
     return userService.signup(credentials)
         .then(user => {
-            // console.log("user:", user)
             store.dispatch({ type: SET_USER, user })
         })
         .catch(err => {
             console.log('user action -> Cannot signup', err)
             throw err
         })
-        .finally(() => {
-            // store.dispatch({ type: SET_IS_LOADING, isLoading: false })
-        })
-
+       
 }
 
 export function update(user) {
@@ -62,9 +55,7 @@ export function update(user) {
             console.log('user action -> Cannot update', err)
             throw err
         })
-        .finally(() => {
-            // store.dispatch({ type: SET_IS_LOADING, isLoading: false })
-        })
+       
 
 }
 
