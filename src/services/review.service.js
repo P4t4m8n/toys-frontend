@@ -15,12 +15,10 @@ export const reviewService = {
 function query(filterBy) {
   // var queryStr = (!filterBy) ? '' : `?name=${filterBy.name}&sort=anaAref`
   return httpService.get(BASE_URL, filterBy)
-  // return asyncService.query('review')
 }
 
 async function remove(reviewId) {
-  // await httpService.delete(`review/${reviewId}`)
-  await asyncService.remove('review', reviewId)
+  await httpService.delete(`review/${reviewId}`)
 }
 
 async function save(review) {
