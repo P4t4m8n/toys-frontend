@@ -2,6 +2,7 @@ import { toyService } from "../services/toy.service"
 import { useState, useEffect } from "react"
 import { useParams, useNavigate } from "react-router"
 import { loadToy, saveToy } from "../store/actions/toy.actions"
+import { uploadService } from "../services/upload.service"
 
 export function ToyEdit() {
 
@@ -29,7 +30,7 @@ export function ToyEdit() {
         switch (field) {
             case 'price':
                 value = +value
-                break;
+                break
             case 'inStock':
                 value = target.checked
                 break
@@ -41,7 +42,7 @@ export function ToyEdit() {
                 value = target.value
                 break;
         }
-       
+
 
         setToyToEdit((prevToy) => ({ ...prevToy, [field]: value }))
     }
@@ -57,6 +58,21 @@ export function ToyEdit() {
             .catch((err) => {
                 console.log('err:', err)
             })
+
+    }
+
+    async function onUplodImg(ev) {
+        const file = ev.target.files[0]
+        try {
+            const imgUrl = await uploadService.uploadImg(file)
+            console.log("imgUrl:", imgUrl)
+
+            setToyToEdit((prevToy) => ({ ...prevToy, img: imgUrl }))
+
+        }
+        catch (err) {
+            console.log('err:', err)
+        }
 
     }
 
@@ -84,6 +100,9 @@ export function ToyEdit() {
                 <label htmlFor="labels">Labels: </label>
                 <input value={toyToEdit.labels} onChange={handleChange}
                     id="labels" type="text" name="labels"></input>
+                <img src={toyToEdit.img}></img>
+
+                <label>Upload<input onChange={onUplodImg} type="file"></input></label>
 
 
             </form>
